@@ -26,13 +26,15 @@ export class DynamicComponentLoader {
     const pluginEntryPointToken = 'PLUGIN_ENTRY_POINT'
 
     // retrieved the metadata for the plugin
-    this.http.get(`${pluginUrlPrefix}/${this.name}/${metadataFileName}`)
+    this.http.get(`http://localhost:8000/${metadataFileName}`)
+    // this.http.get(`${pluginUrlPrefix}/${this.name}/${metadataFileName}`)
       .map(res => res.json())
       .map((metadata: PluginMetadata) => {
 
         // create the element to load in the module and factories
         const script = document.createElement('script');
-        script.src = `${pluginUrlPrefix}/${this.name}/${factoryFileName}`;
+        script.src = `http://localhost:8000/${factoryFileName}`;
+        // script.src = `${pluginUrlPrefix}/${this.name}/${factoryFileName}`;
 
         script.onload = () => {
           //rollup builds the bundle so it's attached to the window object when loaded in

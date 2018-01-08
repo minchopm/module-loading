@@ -4,8 +4,14 @@ import { Component } from '@angular/core';
   selector: 'myplugin',
   template: `
     I am a plugin!
+    {{name}}
     `
 })
 export class PluginComponent {
-
+  name = 'alabala';
+  constructor() {
+    setTimeout(() => {
+      this.name = 'test'
+    }, 15000);
+  }
 }
